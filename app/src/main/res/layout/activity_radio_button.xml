@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".RadioButtonActivity">
+    <RadioGroup android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/rd_1">
+        <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content"
+                     android:text="北京"
+                     android:id="@+id/beijing"/>
+        <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content"
+                     android:text="上海"
+                     android:id="@+id/shanghai"/>
+        <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content"
+                     android:text="广州"
+                     android:id="@+id/guangzhou"/>
+        <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content"
+                     android:text="深圳"
+                     android:id="@+id/shenzhen"/>
+
+    </RadioGroup>
+    <TextView android:id="@+id/selectCity" android:layout_width="wrap_content" android:layout_height="wrap_content"
+              android:text="你选择的城市是："/>
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

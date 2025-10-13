@@ -13,6 +13,9 @@
             android:theme="@style/Theme.Hello_world"
             tools:targetApi="31">
         <activity
+                android:name=".RadioButtonActivity"
+                android:exported="true"/>
+        <activity
                 android:name=".ImageActivity"
                 android:exported="true"/>
         <activity
