@@ -45,22 +45,22 @@ public class Check_BoxActivity extends AppCompatActivity {
             public void onClick(View v) {
                 List<String> selectHobby = new ArrayList<>();
                 if (cb1.isChecked()) {
-//                    selectHobby.add(cb1.getText().toString());
+                    selectHobby.add(cb1.getText().toString());
                 }
                 if (cb2.isChecked()) {
-//                    selectHobby.add(cb2.getText().toString());
+                    selectHobby.add(cb2.getText().toString());
                 }
                 if (cb3.isChecked()) {
-//                    selectHobby.add(cb3.getText().toString());
+                    selectHobby.add(cb3.getText().toString());
                 }
                 if (cb4.isChecked()) {
-//                    selectHobby.add(cb4.getText().toString());
+                    selectHobby.add(cb4.getText().toString());
                 }
                 if (selectHobby.isEmpty()) {
                     Toast.makeText(Check_BoxActivity.this, "请至少选择一个 爱好", Toast.LENGTH_SHORT).show();
                     return;
                 }
-//                tv1.setText("您的爱好是：" + selectHobby);
+                tv1.setText("您的爱好是：" + selectHobby);
             }
         });
 
