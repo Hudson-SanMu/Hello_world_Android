@@ -13,6 +13,9 @@
         android:theme="@style/Theme.Hello_world"
         tools:targetApi="31">
         <activity
+            android:name=".AlertDialogActivity"
+            android:exported="true" />
+        <activity
             android:name=".Check_BoxActivity"
             android:exported="true" />
         <activity
