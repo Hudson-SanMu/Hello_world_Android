@@ -16,6 +16,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.hello_world.utils.NetUtil;
+
 public class ThreadActivity extends AppCompatActivity {
     private Button b1;
     private TextView txt1 ;
@@ -55,7 +57,8 @@ public class ThreadActivity extends AppCompatActivity {
 
             @Override
             public void run() {
-                String stringFromNet = getStringFromNet();
+//                String stringFromNet = getStringFromNet();
+                String stringFromNet = NetUtil.doGet();
                 Message message = new Message();
                 message.what=0;
                 message.obj=stringFromNet;
@@ -80,4 +83,7 @@ public class ThreadActivity extends AppCompatActivity {
         System.out.println("主线程继续执行...");
         return xxx;
     }
+
+
+
 }
