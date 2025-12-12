@@ -34,6 +34,26 @@ android {
 }
 
 dependencies {
+    //okhttp
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
+    //okhttp拦截器
+    implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
+    // Gson解析器
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    //Glide
+    implementation("com.github.bumptech.glide:glide:4.16.0")
+    // Glide 注解处理器（用于生成 GlideApp）
+    annotationProcessor("com.github.bumptech.glide:compiler:4.16.0")
+    // 可选：RecyclerView 集成
+    implementation("com.github.bumptech.glide:recyclerview-integration:4.16.0")
+    // 可选：OkHttp 集成（用于网络请求）
+    implementation("com.github.bumptech.glide:okhttp3-integration:4.16.0")
+    //Retrofit 核心
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    // Gson 转换器（JSON ↔ Java）
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    // 字符串转换器（可选，处理纯文本响应）
+    implementation("com.squareup.retrofit2:converter-scalars:2.9.0")
 
     implementation libs.appcompat
     implementation libs.material

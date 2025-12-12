@@ -1,17 +1,33 @@
 package com.example.hello_world.utils;
 
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
+import android.util.Log;
+
+import androidx.annotation.NonNull;
+
+import com.example.hello_world.R;
+
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
- public class NetUtil {
 
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
+public class NetUtil {
     public static String doGet() {
-        String result = "";
-        BufferedReader reader = null;
-        String bookJSONString = null;
+        String result;
+        BufferedReader reader ;
+        String bookJSONString ;
 
         HttpURLConnection httpURLConnection = null;
         String url = "https://www.baidu.com";
@@ -46,5 +62,32 @@ import java.net.URL;
         }
 
         return result;
+    }
+    public static void okHttpGET(Handler mhandler) {
+        OkHttpClient okHttpClient = new OkHttpClient();
+        Request request = new Request.Builder().url("https://www.baidu.com").build();
+        okHttpClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                // 请求失败
+                Log.e("OkHttp", "Request failed", e);
+            }
+
+            @Override
+            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                if (!response.isSuccessful()) {
+                    Log.e("OkHttp", "Unexpected response code: " + response.code());
+                    return;
+                }
+
+                // 注意：这里在子线程，需要切换到主线程更新UI
+                String responseBody = response.body().string();
+                response.close();
+                Message message = new Message();
+                message.what = 1;
+                message.obj = responseBody;
+                mhandler.sendMessage(message);
+            }
+        });
     }
 }

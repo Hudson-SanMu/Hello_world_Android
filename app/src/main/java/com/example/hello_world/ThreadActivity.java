@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -20,17 +21,24 @@ import com.example.hello_world.utils.NetUtil;
 
 public class ThreadActivity extends AppCompatActivity {
     private Button b1;
-    private TextView txt1 ;
+    private TextView txt1;
 
-    private Handler mhandler = new Handler(Looper.myLooper()){
+    public Handler mhandler = new Handler(Looper.myLooper()) {
         @Override
         public void handleMessage(@NonNull Message msg) {
             super.handleMessage(msg);
 
-            if (msg.what==0){
-                String str =(String) msg.obj;
+            if (msg.what == 0) {
+                String str = (String) msg.obj;
                 txt1.setText(str);
-                Toast.makeText(ThreadActivity.this,"主线程收到消息",Toast.LENGTH_SHORT).show();
+                Toast.makeText(ThreadActivity.this, "主线程收到消息", Toast.LENGTH_SHORT).show();
+
+            }
+            if (msg.what == 1) {
+                String str = (String) msg.obj;
+                txt1.setText(str);
+                Toast.makeText(ThreadActivity.this, "主线程收到消息", Toast.LENGTH_SHORT).show();
+
             }
         }
     };
@@ -53,26 +61,30 @@ public class ThreadActivity extends AppCompatActivity {
 
 
     public void start(View view) {
-        new Thread(new Runnable(){
-
-            @Override
-            public void run() {
-//                String stringFromNet = getStringFromNet();
-                String stringFromNet = NetUtil.doGet();
-                Message message = new Message();
-                message.what=0;
-                message.obj=stringFromNet;
-                mhandler.sendMessage(message);
-
-            }
-        }).start();
+        //方法1：创建线程
+//        new Thread(new Runnable(){
+//
+//            @Override
+//            public void run() {
+////                String stringFromNet = getStringFromNet();
+//                String stringFromNet = NetUtil.doGet();
+//                Log.d("okHttpGET2", "handleMessage: "+stringFromNet);
+//                Message message = new Message();
+//                message.what=0;
+//                message.obj=stringFromNet;
+//                mhandler.sendMessage(message);
+//
+//            }
+//        }).start();
+        //方法2：使用okHttp的异步方法
+        NetUtil.okHttpGET(mhandler);
     }
 
 
-    String getStringFromNet(){
-         String xxx = "";
+    String getStringFromNet() {
+        String xxx = "";
         for (int i = 0; i < 100; i++) {
-            xxx =xxx+"视图"+i;
+            xxx = xxx + "视图" + i;
         }
         try {
             System.out.println("5秒后执行的任务");
@@ -83,7 +95,6 @@ public class ThreadActivity extends AppCompatActivity {
         System.out.println("主线程继续执行...");
         return xxx;
     }
-
 
 
 }
